@@ -1,10 +1,10 @@
 module {{ComponentWithNamespace}}.State exposing (..)
 
-import User.Types exposing (..)
+import {{ComponentWithNamespace}}.Types exposing (..)
 
 initialState = {}
 
 update msg model =
     case msg of
-        Action ->
+        ActionName ->
           ( model, Cmd.none )
