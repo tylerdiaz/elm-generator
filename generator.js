@@ -14,6 +14,10 @@ var argv = require('yargs')
 var startPath = argv.path || process.cwd();
 var componentPath = startPath + "/" + argv._[0];
 
+function filePathToElmNamespace(filepath){
+  return filepath.replace(/\/*$/, "").replace('/', '.');
+}
+
 mkdirp(componentPath, function (err) {
   if (err) {
     console.error(err);
@@ -30,7 +34,7 @@ mkdirp(componentPath, function (err) {
           console.log('generating '+ componentPath + "/" + blueprints[i])
           fs.writeFileSync(
             componentPath + "/" + blueprints[i],
-            template({"ComponentWithNamespace" : argv._[0].replace('/', '.') })
+            template({"ComponentWithNamespace" : filePathToElmNamespace(argv._[0]) })
           );
         }
       }
